@@ -320,15 +320,17 @@ void ignorarComentarios(char palabraALeer[],FILE *file)
     int i,longitudDelNombre;
 
         
-        if((palabraALeer[0] == '/') && (palabraALeer[1] == '/'))
+         if((palabraALeer[0] == '/') && (palabraALeer[1] == '/'))
         {
             while((*topePILAcomentario != 'R'))
             {
-                
+                if((strlen(palabraALeer) > 0))
+                {
+
                 longitudDelNombre =  strlen(palabraALeer);
 
-                
-                    if(caracter == '\n')
+
+                    if((caracter == '\n') || (caracter == EOF) )
                     {
                         ++topePILAcomentario;
                         *topePILAcomentario = 'R';
@@ -337,8 +339,8 @@ void ignorarComentarios(char palabraALeer[],FILE *file)
                     
                    
                     caracter= fgetc(file);
-                    
-                
+                   
+                }
             }
             
         }
