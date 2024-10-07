@@ -30,6 +30,8 @@ for(int i= 1; i< argc ; i++)
 FILE *file = freopen(argv[i], "r", stdin);  
 
 int noInstanciado = 0;
+int primerMetodo = 0;
+int huboVariable = 0;
 char palabraActual[100];
 char posibleConstante[100];
 char chequeoDeIntancia[100];
@@ -64,6 +66,9 @@ do{
                      
                 printf("%s%s", palabraActual, " { \n");
 
+                primerMetodo = 0;
+                huboVariable = 0;
+
                 do{
                     if(noInstanciado)
                     {
@@ -81,8 +86,17 @@ do{
 
                                 if(strcmp("method",palabraActual)==0)
                                 {
+
+                                    if ((primerMetodo == 0) && (huboVariable > 0))
+                                    {
+                                        primerMetodo = 1;
+
+                                        printf("--\n");
+                                    }
                                     acomodarFinalDeMetodo(palabraActual);
                                     printf("%s%s", palabraActual, "\n");
+
+                                    
                                 }
 
                                 if((strcmp("var",palabraActual)==0))
@@ -100,6 +114,8 @@ do{
                                             acomodarNombreDeVariable(palabraActual);
                                             printf("%s%s", palabraActual, "\n");
                                         }
+
+                                    huboVariable++;
                                 }
 
                                 if((strcmp("const",palabraActual)==0))
@@ -141,7 +157,7 @@ do{
                                             strcpy(palabraActual,chequeoDeIntancia);
                                             ++noInstanciado;
                                         }                                            
-                                             
+                                    huboVariable++;  
                                 }
 
                                                                                                   
