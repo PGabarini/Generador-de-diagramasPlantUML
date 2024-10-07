@@ -108,7 +108,16 @@ do{
                                     acomodarNombreDeConstante(palabraActual);
                                         
                                     strcpy(posibleConstante,palabraActual);
-                                    obtenerPalabra(chequeoDeIntancia);                                     
+                                    obtenerPalabra(chequeoDeIntancia);
+
+                                    if(strcmp("property",palabraActual)==0)
+                                    {   
+                                        
+                                        printf("%s%s", chequeoDeIntancia, "\n");
+                                        strcpy(palabraActual,chequeoDeIntancia);
+                                        posibleConstante[0]= ' ';
+                                        ++noInstanciado;                                        
+                                    }                                    
                         
                                     if(((strcmp("=new",chequeoDeIntancia))==0)||((strcmp("new",chequeoDeIntancia))==0))
                                     {                                           
