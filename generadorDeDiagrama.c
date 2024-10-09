@@ -362,9 +362,10 @@ void ignorarComentarios(char palabraALeer[],FILE *file)
                         
                     }
                     
-                   
+                   if((*topePILAcomentario != 'R'))
+                   {
                     caracter= fgetc(file);
-                   
+                   }
                 }
             }
             
